@@ -1,0 +1,5 @@
+* ethereum_workspace_example
+:PROPERTIES:
+:CUSTOM_ID: ethereum_workspace_example
+:END:
+ethereum workspace example
