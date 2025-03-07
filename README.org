@@ -3,3 +3,13 @@
 :CUSTOM_ID: ethereum_workspace_example
 :END:
 ethereum workspace example
+
+
+** foundry hello example
+
+#+begin_src shell
+forge init --offline --no-git --force foundry_hello_example
+cd foundry_hello_example
+forge install --no-commit --no-git foundry-rs/forge-std
+forge build
+#+end_src
