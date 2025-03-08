@@ -2,16 +2,21 @@
 pragma solidity ^0.8.20;
 
 contract RockPaperScissors {
-    enum Move { None, Rock, Paper, Scissors }
+    enum Move {
+        None,
+        Rock,
+        Paper,
+        Scissors
+    }
 
-        struct Player {
-            address payable addr;
-            bytes32 moveHash;
-            Move move;
-            bool revealed;
-        }
+    struct Player {
+        address payable addr;
+        bytes32 moveHash;
+        Move move;
+        bool revealed;
+    }
 
-        Player[2] public players;
+    Player[2] public players;
     uint256 public betAmount;
     uint8 public playerCount;
     bool public gameFinished;
@@ -67,19 +72,16 @@ contract RockPaperScissors {
             players[0].addr.transfer(betAmount);
             players[1].addr.transfer(betAmount);
         } else if (
-                   (move1 == Move.Rock && move2 == Move.Scissors) ||
-                   (move1 == Move.Paper && move2 == Move.Rock) ||
-                   (move1 == Move.Scissors && move2 == Move.Paper)
+            (move1 == Move.Rock && move2 == Move.Scissors) || (move1 == Move.Paper && move2 == Move.Rock)
+                || (move1 == Move.Scissors && move2 == Move.Paper)
         ) {
             winner = players[0].addr;
         } else {
             winner = players[1].addr;
         }
 
-        if (winner != address(0)) {
-            emit GameFinished(winner, betAmount * 2);
-            winner.transfer(betAmount * 2);
-        }
+        emit GameFinished(winner, betAmount * 2);
+        winner.transfer(betAmount * 2);
 
         gameFinished = true;
     }
